@@ -3,9 +3,9 @@
   
   
   <url>
-    <loc>DanielAndreasen.github.io/Hello-World/</loc>
+    <loc>DanielAndreasen.github.io/first/</loc>
     
-    <lastmod>2014-03-03T00:00:00+00:00</lastmod>
+    <lastmod>2014-12-11T00:00:00+00:00</lastmod>
     
     <priority>0.8</priority>
   </url>
@@ -13,21 +13,21 @@
   
   <url>
     <loc>DanielAndreasen.github.io/404.html</loc>
-    <lastmod>2014-11-13T02:59:23+00:00</lastmod>
+    <lastmod>2014-11-13T03:11:40+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>DanielAndreasen.github.io/about/</loc>
-    <lastmod>2014-11-13T02:59:23+00:00</lastmod>
+    <lastmod>2014-11-13T03:11:40+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   
   <url>
     <loc>DanielAndreasen.github.io/</loc>
-    <lastmod>2014-11-13T02:59:23+00:00</lastmod>
+    <lastmod>2014-11-13T03:11:40+00:00</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
