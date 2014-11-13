@@ -18,7 +18,7 @@ avatar: images/me.jpg
 # Includes an icon in the footer for each username you enter
 footer-links:
   email: daniel.andreasen@astro.up.pt
-  facebook: /daniel.t.andreasen
+  facebook: daniel.t.andreasen
   github: DanielAndreasen
   rss: cool
   stackoverflow: users/1340702/daniel-thaagaard-andreasen
