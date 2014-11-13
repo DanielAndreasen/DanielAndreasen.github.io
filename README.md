@@ -37,7 +37,7 @@ Making a change to _config.yml (or any file in your repository) will force GitHu
 > 3. Clone down your repository and make updates locally, then push them to your GitHub repository.
 
 ![_config.yml](/images/config.png "_config.yml")
-  
+
 ### Step 3) Publish your first blog post
 
 Edit `/_posts/2014-3-3-Hello-World.md` to publish your first blog post. This [Markdown Cheatsheet](http://www.jekyllnow.com/Markdown-Style-Guide/) might come in handy.
@@ -68,23 +68,23 @@ It covers:
 
 ## Jekyll Now Features
 
-✓ Command-line free _fork-first workflow_, using GitHub.com to create, customize and post to your blog  
-✓ Fully responsive and mobile optimized base theme (**[Theme Demo](http://jekyllnow.com)**)  
-✓ Sass/Coffeescript support using Jekyll 2.0  
-✓ Free hosting on your GitHub Pages user site  
-✓ Markdown blogging  
-✓ Syntax highlighting  
-✓ Disqus commenting  
-✓ Google Analytics integration  
-✓ SVG social icons for your footer  
-✓ 3 http requests, including your avatar  
-✓ Emoji in blog posts! :sparkling_heart: :sparkling_heart: :sparkling_heart:  
+✓ Command-line free _fork-first workflow_, using GitHub.com to create, customize and post to your blog
+✓ Fully responsive and mobile optimized base theme (**[Theme Demo](http://jekyllnow.com)**)
+✓ Sass/Coffeescript support using Jekyll 2.0
+✓ Free hosting on your GitHub Pages user site
+✓ Markdown blogging
+✓ Syntax highlighting
+✓ Disqus commenting
+✓ Google Analytics integration
+✓ SVG social icons for your footer
+✓ 3 http requests, including your avatar
+✓ Emoji in blog posts! :sparkling_heart: :sparkling_heart: :sparkling_heart:
 
-✘ No installing dependancies  
-✘ No need to set up local development  
-✘ No configuring plugins  
-✘ No need to spend time on theming  
-✘ More time to code other things ... wait ✓!  
+✘ No installing dependancies
+✘ No need to set up local development
+✘ No configuring plugins
+✘ No need to spend time on theming
+✘ More time to code other things ... wait ✓!
 
 ## Questions?
 
@@ -104,7 +104,7 @@ You can use the [Quick Start](https://github.com/barryclark/jekyll-now#quick-sta
 ## Credits
 
 - [Jekyll](https://github.com/jekyll/jekyll) - Thanks to its creators, contributors and maintainers.
-- [SVG icons](https://github.com/neilorangepeel/Free-Social-Icons) - Thanks, Neil Orange Peel. They're beautiful. 
+- [SVG icons](https://github.com/neilorangepeel/Free-Social-Icons) - Thanks, Neil Orange Peel. They're beautiful.
 - [Solarized Light Pygments](https://gist.github.com/edwardhotchkiss/2005058) - Thanks, Edward.
 - [Joel Glovier](http://joelglovier.com/writing/) - Great Jekyll articles. I used Joel's feed.xml in this repository.
 - [David Furnes](https://github.com/dfurnes), [Jon Uy](https://github.com/jonuy), [Luke Patton](https://github.com/lkpttn) - Thanks for the design/code reviews.
