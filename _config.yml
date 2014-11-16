@@ -9,7 +9,7 @@ name: Daniel Thaagaard Andreasen
 description: PhD in astronomy at Porto, Portugal
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
-avatar: images/me.jpg
+avatar: img/me.jpg
 
 #
 # Flags below are optional
@@ -30,31 +30,33 @@ disqus: Daniel
 # Used for Sitemap.xml and your RSS feed
 url: DanielAndreasen.github.io
 
+# Use 10 post maximum on home page.
+paginate: 2
 
 #
 # !! You don't need to change any of the configuration flags below !!
 #
 
-markdown: kramdown
+markdown: rdiscount
+permalink: pretty
 highlighter: pygments
-permalink: /:title/
 
 # The release of Jekyll Now that you're using
-version: v1.0.0
+# version: v1.0.0
 
 # Set the Sass partials directory, as we're using @imports
 sass:
-  sass_dir: _scss
-  style: :expanded # You might prefer to minify using :compressed
+  # sass_dir: _scss
+  # style: :expanded # You might prefer to minify using :compressed
 
 # Use the following plug-ins
-gems:
-  - jemoji # Emoji please!
-  - jekyll-sitemap # Create a sitemap using the official Jekyll sitemap gem
+# gems:
+  # - jemoji # Emoji please!
+  # - jekyll-sitemap # Create a sitemap using the official Jekyll sitemap gem
 
 # Exclude these files from your production _site
-exclude:
-    - Gemfile
-    - Gemfile.lock
-    - LICENSE
-    - README.md
+# exclude:
+    # - Gemfile
+    # - Gemfile.lock
+    # - LICENSE
+    # - README.md

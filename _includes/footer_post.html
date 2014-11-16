@@ -1,0 +1,12 @@
+    <div class="row-fluid">
+        <div class="span4">
+        </div>
+        <div class="span8">
+            <div class="date">
+                - Written on {{ page.date | date: "%B %e, %Y" }}
+            </div>
+                {% include disqus.html disqus_identifier=page.disqus_identifier %}
+        </div>
+    </div>
+    </body>
+</html>
