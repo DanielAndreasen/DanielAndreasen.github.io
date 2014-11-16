@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+<channel>
+        <title>Daniel Andreasen</title>
+        <description>Daniel Andreasen - Daniel Andreasen</description>
+        <link>http://danielandreasen.github.io</link>
+        <link>http://danielandreasen.github.io</link>
+        <lastBuildDate>2014-11-16T21:00:44+00:00</lastBuildDate>
+        <pubDate>2014-11-16T21:00:44+00:00</pubDate>
+        <ttl>1800</ttl>
+
+
+        <item>
+                <title>NIR spectroscopy of low mass stars</title>
+                <description>
+&lt;p&gt;Today I will give a short introduction to my work.&lt;/p&gt;
+</description>
+                <link>http://danielandreasen.github.io/:about/2014/11/16/nir-spectroscopy-of-low-mass-stars</link>
+                <guid>http://danielandreasen.github.io/:about/2014/11/16/nir-spectroscopy-of-low-mass-stars</guid>
+                <pubDate>2014-11-16T00:00:00+00:00</pubDate>
+        </item>
+
+
+</channel>
+</rss>

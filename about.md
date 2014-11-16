@@ -1,10 +1,9 @@
 ---
 layout: page
-title: Astro blog!
-tagline: A world of stars and stuff.
+title: About
+group: navigation
 ---
 {% include JB/setup %}
-
 
 ## Introduction
 
@@ -13,7 +12,7 @@ let's start, shall we?
 
 My name is Daniel, which you probably already have guessed from looking around
 on the page. Anyway, I am working on my PhD with a title close to
-"Characterization of M dwarfs: the NIR approach". I will not tell too much
+**Characterization of M dwarfs: the NIR approach** I will not tell too much
 about the project now, since I hope a feature post can be about that. Anyway,
 really short it is about determine some fundamental parameters for low mass
 stars using spectroscopy in the Near InfraRed (NIR). So now you know.
@@ -28,8 +27,8 @@ Aarhus, the second largest city in Denmark to take my degree at Aarhus
 Universitet. The first 3 years I was enrolled in a physics degree with a
 "minor" in astronomy. My final project was on RR Lyrae stars and the Blazhko
 effect. After I continued with my master degree which I finished in 2013 on my
-birthday (it was all planned). The title was *Age Determination of the Open
-stellar Cluster NGC 7789 using the Detached Eclipsing Binary System V3785*.
+birthday (it was all planned). The title was **Age Determination of the Open
+stellar Cluster NGC 7789 using the Detached Eclipsing Binary System V3785**.
 Exactly one week later I took the plane to Porto to continue with my PhD.
 
 
@@ -47,3 +46,6 @@ The programming part will mainly be about `python`. Probably there will also be
 some about `tmux + vim`.
 
 Anyway, that is all for now folks. Stay tuned! :)
+
+----
+
