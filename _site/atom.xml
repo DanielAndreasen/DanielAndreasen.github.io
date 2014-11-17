@@ -4,7 +4,7 @@
  <title>Daniel Andreasen</title>
  <link href="http://danielandreasen.github.io/" rel="self"/>
  <link href="http://danielandreasen.github.io"/>
- <updated>2014-11-16T21:15:02+00:00</updated>
+ <updated>2014-11-17T20:45:03+00:00</updated>
  <id>http://danielandreasen.github.io</id>
  <author>
    <name>Daniel Andreasen</name>
@@ -13,12 +13,101 @@
 
  
  <entry>
-   <title>NIR spectroscopy of low mass stars</title>
+   <title>NIR spectroscopy of low mass stars - part 1</title>
    <link href="http://danielandreasen.github.io/:about/2014/11/16/nir-spectroscopy-of-low-mass-stars"/>
    <updated>2014-11-16T00:00:00+00:00</updated>
    <id>http://danielandreasen.github.io/:about/2014/11/16/nir-spectroscopy-of-low-mass-stars</id>
    <content type="html">
-&lt;p&gt;Today I will give a short introduction to my work.&lt;/p&gt;
+&lt;h2 id=&quot;why-m-dwarfs&quot;&gt;Why M-dwarfs&lt;/h2&gt;
+&lt;p&gt;Today I will give an introduction to my work on low mass stars, in particular
+M-dwarfs. Why are M-dwarfs interesting at all? Well, for several reasons, here I
+give the two biggest (in my opinion)&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;1. About 70% of the stars in the Milky Way is M-dwarfs.
+2. Small rocky exoplanets are known to be prone to form around low mass stars.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So first of all, it is alway interesting to study something numerous
+which is the case here. Second of all, astronomy is pushing the limits
+for the hunt of the Earth&amp;#8217;s twin, i.e. an exoplanet with roughly same
+size and mass as the Earth but also in the habitable zone. The habitable
+zone is a zone to be found around a star, where temperature allow liquid
+water to exist (0-100 degrees Celsius).&lt;/p&gt;
+
+&lt;p&gt;Another nice thing about M-dwarfs is that they are cool (because of their low
+mass). This means that an exoplanet can be closer in its orbit and still be in
+the habitable zone compared to the Earth. Therefore they require less time to
+observe in order to find them. To comparison if we want to observe the Earth
+from outer space with the transit method, we will need roughly three years of
+observations. This gives us three transits which we say is the minimum to
+identify a potential exoplanet.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-is-the-problem-anyway&quot;&gt;What is the problem anyway?&lt;/h2&gt;
+&lt;p&gt;The problem with M-dwarfs is they are faint. This is because of their
+cool temperature which is all related in one simple equation&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://www.sciweavers.org/tex2img.php?eq=L%20%3D%204%5Cpi%20R%5E2%20%5Csigma%20T_%7Beff%7D%5E4&amp;amp;bc=Black&amp;amp;fc=Gray&amp;amp;im=jpg&amp;amp;fs=12&amp;amp;ff=arev&amp;amp;edit=0&quot; alt=&quot;equation&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Here &lt;code&gt;L&lt;/code&gt; is the luminosity, &lt;code&gt;R&lt;/code&gt; is the radius, and &lt;code&gt;T&lt;/code&gt; is the effective
+temperature. The rest are constants. Here we see that a low effective
+temperature (the temperature at the surface) gives a low luminosity why
+the M-dwarfs are difficult to observe.&lt;/p&gt;
+
+&lt;p&gt;Another issue with M-dwarfs is the formation of molecules in the
+atmosphere. Molecules are more complicated than single atoms in terms
+of spectroscopy (an probably many other terms as well). Molecules have
+the nasty habit of depressing the continuum in the visible part of the
+spectra. Determination of the continuum is crucial and non-trivial when
+working with spectroscopy. However, this problem is smaller in the Near
+InfraRed (NIR).&lt;/p&gt;
+
+&lt;h2 id=&quot;next-step&quot;&gt;Next step&lt;/h2&gt;
+&lt;p&gt;The natural next step is to move the spectroscopic analysis to the NIR where
+continuum depression is smaller. Another advantage of this region are due to
+the fact, that M-dwarfs are very red. This means that most of their light is
+actually emitted in the NIR/IR and therefore we can in principle observe for a
+shorter time to reach the same signal-to-noise-ratio (SNR). A problem in the
+NIR, is the instrumentation. Currently there is not many NIR spectrographs up
+and running. Luckily some are planned to be up soon, so we can observe the most
+abundant stars in the Universe (limited to our own galaxy).&lt;/p&gt;
+
+&lt;h2 id=&quot;how-does-characterization-work&quot;&gt;How does characterization work?&lt;/h2&gt;
+&lt;p&gt;When characterising stars from spectroscopy, there are two main methods.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;1. The Synthesis method. Fitting the spectra with a model spectrum and read the parameters from the model.
+2. The Equivalent Width (EW) method. Here one measure the EW of chosen spectral lines and force fit these  to find the parameters.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The latter is more a line-by-line analysis whereas the first method is more a
+fit to a whole region.&lt;/p&gt;
+
+&lt;p&gt;The methods are more complicated than sketched, but my guess is, that
+if you read this, you know what I am talking about already (otherwise
+you should feel free to leave a comment down below, and I will try to
+explain it in more detail).&lt;/p&gt;
+
+&lt;p&gt;For this project I use the second method, everything is done from
+scratch! This means that the best spectral lines in a huge wavelength
+region will be picked out more or less manually and tested. To pick the
+lines, I use the Sun as a template since this is the star we know best,
+and we have high-quality spectra in the NIR. Also, I want my method to
+not only work for M-dwarfs but also for FGK-dwarfs. The reason for this
+is, that I will start using the method on well known FGK-dwarfs and test
+the validity of the linelist before moving to M-dwarfs. In this way I
+am able to present a linelist that works consistently for FGK+M-dwarfs
+which the community currently lacks.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-is-next&quot;&gt;What is next&lt;/h2&gt;
+&lt;p&gt;Currently I have a calibrated linelist for the Sun. I am preparing some data
+for an F star from the CRIRES spectrograph. When the data is reduced, I will
+measure EW of this star, and hopefully be able to refine the linelist and
+determine good parameters compared to the literature.&lt;/p&gt;
+
+&lt;p&gt;A part 2 will follow of this post in the &amp;#8220;near&amp;#8221; future. The goal now is around
+January/February. This would be after I publish the paper describing above -
+hopefully :)&lt;/p&gt;
+
+&lt;p&gt;Stay tuned for more.&lt;/p&gt;
 </content>
  </entry>
  
