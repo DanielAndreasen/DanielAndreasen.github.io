@@ -4,13 +4,128 @@
  <title>Daniel Andreasen</title>
  <link href="http://danielandreasen.github.io/" rel="self"/>
  <link href="http://danielandreasen.github.io"/>
- <updated>2014-11-17T20:45:03+00:00</updated>
+ <updated>2014-11-21T14:26:47+00:00</updated>
  <id>http://danielandreasen.github.io</id>
  <author>
    <name>Daniel Andreasen</name>
    <email>daniel.andreasen@astro.up.pt</email>
  </author>
 
+ 
+ <entry>
+   <title>Code sharing inside an institution and beyond</title>
+   <link href="http://danielandreasen.github.io/:about/2014/11/21/code-sharing-inside-an-institution-and-beyond"/>
+   <updated>2014-11-21T00:00:00+00:00</updated>
+   <id>http://danielandreasen.github.io/:about/2014/11/21/code-sharing-inside-an-institution-and-beyond</id>
+   <content type="html">
+&lt;h2 id=&quot;starting-a-project&quot;&gt;Starting a project&lt;/h2&gt;
+&lt;p&gt;A couple of weeks ago, two of my colleagues and I decided to write a piece of
+software that would act like a wrapper for another software that is more
+tedious and annoying to use. We knew this would be a big project, so we created
+a repository on GitHub for the purpose. We realized that this project could not
+only have a great impact on our group here at the institution, but also for the
+general community working on the same problems as we (spectral analysis of
+stars).&lt;/p&gt;
+
+&lt;p&gt;Personally I was very excited, since this gave me an opportunity to take my
+Python programming skills to the next level, after being stuck at the same
+place for some time now. Also it would make my future life easier, and give me
+more time to do science and not code development.&lt;/p&gt;
+
+&lt;p&gt;We added small functions to the program when we had time. To be honest we
+didn&amp;#8217;t have much time to work on this, but I was still sure (still am)
+that this would be a good project.&lt;/p&gt;
+
+&lt;p&gt;Earlier this week I asked one of the collaborators for a meeting to discuss
+some issues. And that is when I found out&amp;#8230;&lt;/p&gt;
+
+&lt;h2 id=&quot;sharing-code-internally&quot;&gt;Sharing code internally&lt;/h2&gt;
+&lt;p&gt;My colleague told me that his previous supervisor (he is mine and the last
+colleagues&amp;#8217; supervisor currently) already have most of this written in Python
+and ready to use, which he have done for some time now. I was speechless! First
+I thought that was amazing, since the project have the potential as we realized
+earlier. Second, I was not able to understand why this was not shared amongst
+people in our group.&lt;/p&gt;
+
+&lt;p&gt;I asked that question to my colleague, which I assumed he would also have
+asked. The reply he got was simply&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;You did not ask me for it.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;This is not a fair response at all. We had no idea this code already
+existed, and we can&amp;#8217;t go around asking everyone in the building before we want
+to make a program, if it is already written. This code should have been shared!
+No questions asked in my opinion. At least amongst the rest of the institution.&lt;/p&gt;
+
+&lt;h3 id=&quot;what-else-is-out-there&quot;&gt;What else is out there?&lt;/h3&gt;
+&lt;p&gt;After my frustration gradually went away I asked the simple question.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;How much code is out there, that I have also written in either a better or
+worse way?&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;In either case, that seems like a waste of time to me. Why should two, three,
+four people write the same software just because we did not share our code?
+Maybe that development time could have been used to improve the already written
+software or on science (which we are actually hired to do).&lt;/p&gt;
+
+&lt;p&gt;Unfortunately I have a feeling that there is a lot of software out
+there, that is not shared. Probably many big codes are shared, since it
+is &amp;#8220;easy&amp;#8221; to write an article around it and get the credit it deserves.
+I think that the problem is with smaller pieces of software, either
+simple scripts or wrappers. If the code is big or small, it was created for a
+purpose. There is a high probability that other people can benefit from that
+purpose, and thus it should be made public.&lt;/p&gt;
+
+&lt;p&gt;Note that I use public rather vague. I say public in two different ways.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;1. Public for the rest of the people working at an institution (not really
+public).
+2. Public for everyone. Everyone should be free to use the code an improve
+upon it.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&quot;where-should-we-put-our-codes&quot;&gt;Where should we put our codes?&lt;/h2&gt;
+&lt;p&gt;Obviously as GitHub is hosting my blog I&amp;#8217;m biased toward that. However, the
+idea of having code online with version control seems to me as a good choice. I
+will focus now on GitHub since that is what I know how to use.&lt;/p&gt;
+
+&lt;p&gt;Here you can create two type of users&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;1. Free user with all repositories public for all.
+2. Payed user with a number of repositories closed, and only open for some
+invited users.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I have a free user (it is possible to upgrade), and recently I started a
+&lt;a href=&quot;https://github.com/DanielAndreasen/astro_scripts&quot;&gt;repository&lt;/a&gt; with some of my
+scripts. This is maybe not the most elegant solution, but it is a solution. If
+you have bigger codes (and not just a bunch of scripts) this should have its
+own repository. One of the advantages of using a site like GitHub is that
+people can contribute to the code available easily. Another is the possibility
+for making a wiki and/or a dedicated web page for the repository.&lt;/p&gt;
+
+&lt;p&gt;An alternative to a page like GitHub many uses is a personal web page.
+This is in principle okay, but it lacks the advantages of a dedicated
+web page for code development. There is no version control, no issue
+tracker, and no easy opportunity for combined development.&lt;/p&gt;
+
+&lt;h3 id=&quot;license&quot;&gt;License&lt;/h3&gt;
+&lt;p&gt;Last of all, you should always use a license for your code. This is not
+simething I have been very good at, but I see the advantage if you want to have
+certain rights.&lt;/p&gt;
+
+&lt;p&gt;If you, as I am, new to the code sharing world and picking the right license,
+&lt;a href=&quot;http://choosealicense.com/&quot;&gt;this site&lt;/a&gt; might help you&lt;/p&gt;
+
+&lt;p&gt;Now, there is only to start share your codes so we can all benefits from it and
+start doing more fantastic science! Also, if anyone have comments on sharing
+code in an institution I am very interested in that.&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>NIR spectroscopy of low mass stars - part 1</title>
