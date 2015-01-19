@@ -4,13 +4,162 @@
  <title>Daniel Andreasen</title>
  <link href="http://danielandreasen.github.io/" rel="self"/>
  <link href="http://danielandreasen.github.io"/>
- <updated>2015-01-15T23:55:44+00:00</updated>
+ <updated>2015-01-19T08:23:51+00:00</updated>
  <id>http://danielandreasen.github.io</id>
  <author>
    <name>Daniel Andreasen</name>
    <email>daniel.andreasen@astro.up.pt</email>
  </author>
 
+ 
+ <entry>
+   <title>Creating masks in python</title>
+   <link href="http://danielandreasen.github.io/:about/2015/01/18/masks-in-python"/>
+   <updated>2015-01-18T00:00:00+00:00</updated>
+   <id>http://danielandreasen.github.io/:about/2015/01/18/masks-in-python</id>
+   <content type="html">
+&lt;h2 id=&quot;masks-in-python&quot;&gt;Masks in python&lt;/h2&gt;
+
+&lt;p&gt;When working with data arrays masks can be extremely useful. Masks
+are an array of boolean values for which a condition is met (examples
+below). These boolean arrays are then used to sort in the original data
+array (say we only want values above a given value). Here we will use
+&lt;a href=&quot;http://numpy.org&quot;&gt;numpy&lt;/a&gt; arrays which are especially good for handling
+data.&lt;/p&gt;
+
+&lt;p&gt;First thing first, let&amp;#8217;s create some random data.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;numpy&lt;/span&gt; &lt;span class=&quot;kn&quot;&gt;as&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;np&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;np&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;random&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.75969243&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  &lt;span class=&quot;mf&quot;&gt;0.89605676&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  &lt;span class=&quot;mf&quot;&gt;0.2667259&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  &lt;span class=&quot;mf&quot;&gt;0.70995589&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  &lt;span class=&quot;mf&quot;&gt;0.37337853&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+  &lt;span class=&quot;mf&quot;&gt;0.99088484&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  &lt;span class=&quot;mf&quot;&gt;0.09859641&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  &lt;span class=&quot;mf&quot;&gt;0.11185514&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  &lt;span class=&quot;mf&quot;&gt;0.11283875&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;  &lt;span class=&quot;mf&quot;&gt;0.69043097&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;We now have 10 random numbers between 0 and 1 to work with.&lt;/p&gt;
+
+&lt;h2 id=&quot;higher-than-mask&quot;&gt;Higher than mask&lt;/h2&gt;
+&lt;p&gt;Now we create a mask for all values higher than 0.5 and print the values&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;n&quot;&gt;mask1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.5&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mask1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.75969243&lt;/span&gt;  &lt;span class=&quot;mf&quot;&gt;0.89605676&lt;/span&gt;  &lt;span class=&quot;mf&quot;&gt;0.70995589&lt;/span&gt;  &lt;span class=&quot;mf&quot;&gt;0.99088484&lt;/span&gt;  &lt;span class=&quot;mf&quot;&gt;0.69043097&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;To be complete here is how the mask looks like&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mask1&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;  &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;  &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;  &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;  &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;With other words, the mask is just an boolean array according to the condition
+given above (values higher than 0.5).&lt;/p&gt;
+
+&lt;h2 id=&quot;lower-than-mask&quot;&gt;Lower than mask&lt;/h2&gt;
+&lt;p&gt;It is hopefully no surprise that similar masks can be created for values
+lower than 0.5 in a very similar way&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;n&quot;&gt;mask2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.5&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mask2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.2667259&lt;/span&gt;   &lt;span class=&quot;mf&quot;&gt;0.37337853&lt;/span&gt;  &lt;span class=&quot;mf&quot;&gt;0.09859641&lt;/span&gt;  &lt;span class=&quot;mf&quot;&gt;0.11185514&lt;/span&gt;  &lt;span class=&quot;mf&quot;&gt;0.11283875&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;other-operations&quot;&gt;Other operations&lt;/h2&gt;
+&lt;p&gt;We are not limited to greater-than and lower-than operators. Others such as
+&lt;code&gt;==&lt;/code&gt; (equality), &lt;code&gt;!=&lt;/code&gt; (not-equality), &lt;code&gt;&amp;lt;=&lt;/code&gt; (less-than or equal), and so on.&lt;/p&gt;
+
+&lt;h2 id=&quot;combining-masks&quot;&gt;Combining masks&lt;/h2&gt;
+&lt;p&gt;Before we combine masks we must first understand the difference between &lt;code&gt;and&lt;/code&gt;
+and &lt;code&gt;or&lt;/code&gt;. These two statements combine two booleans and return a single
+boolean. Here is a table to better understand what is going on.&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;bool1&lt;/th&gt;
+      &lt;th&gt;bool2&lt;/th&gt;
+      &lt;th&gt;&lt;code&gt;and&lt;/code&gt;&lt;/th&gt;
+      &lt;th&gt;&lt;code&gt;or&lt;/code&gt;&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;True&lt;/td&gt;
+      &lt;td&gt;True&lt;/td&gt;
+      &lt;td&gt;True&lt;/td&gt;
+      &lt;td&gt;True&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;True&lt;/td&gt;
+      &lt;td&gt;False&lt;/td&gt;
+      &lt;td&gt;False&lt;/td&gt;
+      &lt;td&gt;True&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;False&lt;/td&gt;
+      &lt;td&gt;True&lt;/td&gt;
+      &lt;td&gt;False&lt;/td&gt;
+      &lt;td&gt;True&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;False&lt;/td&gt;
+      &lt;td&gt;False&lt;/td&gt;
+      &lt;td&gt;False&lt;/td&gt;
+      &lt;td&gt;False&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;The first two columns shows the booleans we use, and the two next columns shows
+the return from &lt;code&gt;and&lt;/code&gt; and &lt;code&gt;or&lt;/code&gt;, respectively. We want to use this with out
+numpy arrays, but they use a slightly different syntax. Instead of &lt;code&gt;and&lt;/code&gt; we
+will use &lt;code&gt;&amp;amp;&lt;/code&gt;, and instead of &lt;code&gt;or&lt;/code&gt; we will use &lt;code&gt;|&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h3 id=&quot;values-between-a-range&quot;&gt;Values between a range&lt;/h3&gt;
+&lt;p&gt;Now we want all values in the range [0.2, 0.8].&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;n&quot;&gt;mask3&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mask3&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;  &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;  &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;  &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;  &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mask3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.75969243&lt;/span&gt;  &lt;span class=&quot;mf&quot;&gt;0.2667259&lt;/span&gt;   &lt;span class=&quot;mf&quot;&gt;0.70995589&lt;/span&gt;  &lt;span class=&quot;mf&quot;&gt;0.37337853&lt;/span&gt;  &lt;span class=&quot;mf&quot;&gt;0.69043097&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;values-outside-a-range&quot;&gt;Values outside a range&lt;/h3&gt;
+&lt;p&gt;Now we want all values from our array outside of the above range. This can be
+done in two easy ways.&lt;/p&gt;
+
+&lt;p&gt;First let me show the same approach as the above example.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;n&quot;&gt;mask4&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.8&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mask4&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;  &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;  &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;  &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;  &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;  &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mask4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.89605676&lt;/span&gt;  &lt;span class=&quot;mf&quot;&gt;0.99088484&lt;/span&gt;  &lt;span class=&quot;mf&quot;&gt;0.09859641&lt;/span&gt;  &lt;span class=&quot;mf&quot;&gt;0.11185514&lt;/span&gt;  &lt;span class=&quot;mf&quot;&gt;0.11283875&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Note that when creating this mask the less-than and greater-than sign
+have changed place, and the operator is no longer a &lt;code&gt;&amp;amp;&lt;/code&gt; but a &lt;code&gt;|&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The easiest way however is using &lt;code&gt;mask3&lt;/code&gt; directly like this.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;~&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mask3&lt;/span&gt;
+
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;  &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;  &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;  &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;  &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;  &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;False&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;~&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;mask3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.89605676&lt;/span&gt;  &lt;span class=&quot;mf&quot;&gt;0.99088484&lt;/span&gt;  &lt;span class=&quot;mf&quot;&gt;0.09859641&lt;/span&gt;  &lt;span class=&quot;mf&quot;&gt;0.11185514&lt;/span&gt;  &lt;span class=&quot;mf&quot;&gt;0.11283875&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code&gt;~&lt;/code&gt; sign simply change all the values in the mask to the opposite, and
+hence we get the same result.&lt;/p&gt;
+
+&lt;p&gt;If you have any questions or comments about masks feel free to leave
+them in the comment section down below.&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>Python's lambda function - a beginner's guide</title>
