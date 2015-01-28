@@ -5,10 +5,145 @@
         <description>Daniel Andreasen - Daniel Andreasen</description>
         <link>http://danielandreasen.github.io</link>
         <link>http://danielandreasen.github.io</link>
-        <lastBuildDate>2015-01-19T08:25:24+00:00</lastBuildDate>
-        <pubDate>2015-01-19T08:25:24+00:00</pubDate>
+        <lastBuildDate>2015-01-28T13:41:03+00:00</lastBuildDate>
+        <pubDate>2015-01-28T13:41:03+00:00</pubDate>
         <ttl>1800</ttl>
 
+
+        <item>
+                <title>Python's argparse module</title>
+                <description>
+&lt;h2 id=&quot;scripts-the-wrong-way&quot;&gt;Scripts the wrong way&lt;/h2&gt;
+&lt;p&gt;&lt;a href=&quot;https://docs.python.org/3/library/argparse.html&quot;&gt;argparse&lt;/a&gt; is my new favorite
+python module. Python is a very nice language for making scripts (or Command
+Line Interfaces, CLI), and argparse helps with this task.&lt;/p&gt;
+
+&lt;p&gt;So here is the setup. We want to write a small script that can do some work for
+us. It will take some input arguments when called from the command line. How
+will we do this? Many of us are guilty of writing something like this&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;sys&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;len&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;Script takes 3 arguments&amp;#39;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;raise&lt;/span&gt; &lt;span class=&quot;ne&quot;&gt;SystemExit&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sys&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;argv&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:]&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;c&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Remember that the first argument of &lt;code&gt;sys.argv&lt;/code&gt; is the name of the script
+itself. The example above is very simple, but imaging if your script
+is somewhat more complicated. 2 months after you wrote it, you need to
+use it again, but have no idea how it works. You need to go back and
+read the comments (which you always should write), and maybe even the
+source code. This is a waste of time and tedious when you just need
+the script. How awesome could it be to write something like &lt;code&gt;python
+script.py -h&lt;/code&gt; and a help text will be printed? Well, that is one of the
+things argparse does for you!&lt;/p&gt;
+
+&lt;h2 id=&quot;argparse&quot;&gt;argparse&lt;/h2&gt;
+&lt;p&gt;argparse can do a lot of things for you, and I am no expert, but I know the
+basics, and that is already orders of magnitude better than &lt;code&gt;sys.argv&lt;/code&gt;
+solutions. Here is how it works.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-python&quot; data-lang=&quot;python&quot;&gt;&lt;span class=&quot;kn&quot;&gt;import&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;argparse&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;parser&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;argparse&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ArgumentParser&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;description&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;Description of your program&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;parser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_argument&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;num1&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;help&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;First number in the sum&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;parser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_argument&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;num2&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;help&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;Second number in the sum&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;parser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_argument&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;num3&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;help&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;Third number in the sum&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;float&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;parser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add_argument&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;-s&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&amp;#39;--sign&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;help&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;#39;Positive (default) for sum, negative for difference&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                    &lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;default&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;parser&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;parse_args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;sign&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num3&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num2&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;num3&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;This code is longer than the &lt;code&gt;sys.argv&lt;/code&gt; example, but it also does a lot
+more. It generates a help text, have error handling if the type of an argument
+is invalid, and can set both required and optional arguments. Let&amp;#8217;s try to run
+above in the shell&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;python script.py
+
+usage: script.py &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;-h&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;-s SIGN&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; num1 num2 num3
+script.py: error: too few arguments&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;So we learn we have too few arguments, which is right. In the construction we
+have required the three numbers to be provided. Let&amp;#8217;s try run it with the &lt;code&gt;-h&lt;/code&gt;
+flag.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;python script.py -h
+
+usage: script.py &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;-h&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;-s SIGN&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; num1 num2 num3
+
+Description of your program
+
+positional arguments:
+  num1                  First number in the sum
+  num2                  Second number in the sum
+  num3                  Third number in the sum
+
+optional arguments:
+  -h, --help            show this &lt;span class=&quot;nb&quot;&gt;help &lt;/span&gt;message and &lt;span class=&quot;nb&quot;&gt;exit&lt;/span&gt;
+  -s SIGN, --sign SIGN  Positive &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;default&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; sum, negative &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; difference&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;If you are not convinced by now, then just stay with me for two more examples.&lt;/p&gt;
+
+&lt;h3 id=&quot;example-1---testing-the-script&quot;&gt;Example 1 - testing the script&lt;/h3&gt;
+&lt;p&gt;Now we will try to give it something to work with. We want our program to
+calculate the difference between three numbers, and then the sum.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;python script.py &lt;span class=&quot;m&quot;&gt;42&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;21&lt;/span&gt; 7.3 -s -1
+
+13.7
+python script.py &lt;span class=&quot;m&quot;&gt;42&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;21&lt;/span&gt; 7.3
+
+70.3&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;It seems our program is working. Now, let&amp;#8217;s try to crash it.&lt;/p&gt;
+
+&lt;h3 id=&quot;example-2---crashing-the-script&quot;&gt;Example 2 - crashing the script&lt;/h3&gt;
+&lt;p&gt;Our program don&amp;#8217;t know how to add strings, so, funny as we are, let&amp;#8217;s give it
+some strings to work with.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;python script.py &lt;span class=&quot;m&quot;&gt;13&lt;/span&gt; hello world
+
+usage: script.py &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;-h&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;-s SIGN&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; num1 num2 num3
+script.py: error: argument num2: invalid float value: &lt;span class=&quot;s1&quot;&gt;&amp;#39;hello&amp;#39;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Awesome, it gives an error message we can understand. If we corrected the
+error, it will complain about the &lt;code&gt;num3&lt;/code&gt; argument in the same way. What if we
+only give 2 arguments?&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;python script.py &lt;span class=&quot;m&quot;&gt;20&lt;/span&gt; 22
+
+usage: script.py &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;-h&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;-s SIGN&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; num1 num2 num3
+script.py: error: too few arguments&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Yet another error we can understand and easily correct. This happens because we
+specified the &lt;code&gt;type&lt;/code&gt; in the script, and the 3 numbers are &amp;#8220;positional
+arguments&amp;#8221; which means we have to provide this.&lt;/p&gt;
+
+&lt;h2 id=&quot;conclusion&quot;&gt;Conclusion&lt;/h2&gt;
+&lt;p&gt;There are other modules out there like argparse, all of them better than
+&lt;code&gt;sys.argv&lt;/code&gt;, so stop using that solutions. Then your script will be much easier
+to use in 2 weeks, 2 months, maybe even years after you wrote them. And even
+better, if you
+&lt;a href=&quot;http://danielandreasen.github.io/:about/2014/11/21/code-sharing-inside-an-institution-and-beyond/&quot;&gt;share&lt;/a&gt;
+your code other can easily use and understand them. So take the time to write a
+good help text and description, then you will forever thank the past-you for
+doing so.&lt;/p&gt;
+
+&lt;p&gt;For more realistic examples, I&amp;#8217;ve put some of my favorite scripts on GitHub.
+Feel free to use them at any time. The repository can be found
+&lt;a href=&quot;https://github.com/DanielAndreasen/astro_scripts&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+</description>
+                <link>http://danielandreasen.github.io/:about/2015/01/28/pythons-argparse-module</link>
+                <guid>http://danielandreasen.github.io/:about/2015/01/28/pythons-argparse-module</guid>
+                <pubDate>2015-01-28T00:00:00+00:00</pubDate>
+        </item>
 
         <item>
                 <title>Creating masks in python</title>
